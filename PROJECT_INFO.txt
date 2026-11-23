@@ -1,0 +1,12 @@
+UKMC Smart Todo Web
+Pertemuan 11 - Laravel 12 + SQL Auth + Google Auth + CRUD To-Do
+
+Dosen:
+Dr. Latius Hermawan, S.T., M.Kom.
+
+Mata Kuliah:
+Pemrograman Basis Mobile - Informatika UKMC
+
+Catatan:
+Folder vendor tidak disertakan.
+Jalankan composer install setelah extract.

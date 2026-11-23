@@ -1,0 +1,144 @@
+UKMC SMART TODO WEB - SETUP LOKAL
+================================
+
+Dosen:
+Dr. Latius Hermawan, S.T., M.Kom.
+
+MK:
+Pemrograman Basis Mobile - Informatika UKMC
+
+
+1. EXTRACT
+----------
+Extract ZIP menjadi:
+
+C:\xampp\htdocs\todo_web
+
+
+2. START XAMPP
+--------------
+Aktifkan:
+- Apache
+- MySQL
+
+
+3. BUAT DATABASE
+----------------
+Buka:
+
+http://localhost/phpmyadmin
+
+Buat database:
+
+todo_web
+
+Collation disarankan:
+utf8mb4_unicode_ci
+
+
+4. INSTALL DEPENDENCY
+---------------------
+Buka PowerShell:
+
+cd C:\xampp\htdocs\todo_web
+
+composer install
+
+
+5. BUAT .ENV
+------------
+PowerShell:
+
+Copy-Item .env.example .env
+
+atau CMD:
+
+copy .env.example .env
+
+
+6. CEK DATABASE .ENV
+--------------------
+Sudah disiapkan default:
+
+DB_CONNECTION=mysql
+DB_HOST=127.0.0.1
+DB_PORT=3306
+DB_DATABASE=todo_web
+DB_USERNAME=root
+DB_PASSWORD=
+
+Jika MySQL XAMPP Anda memakai password,
+ubah DB_PASSWORD.
+
+
+7. GENERATE KEY
+---------------
+php artisan key:generate
+
+
+8. MIGRATION
+------------
+php artisan migrate
+
+
+9. JALANKAN
+-----------
+php artisan serve
+
+
+10. BUKA BROWSER
+----------------
+http://127.0.0.1:8000
+
+
+11. TEST SQL
+------------
+- Register
+- Logout
+- Login SQL
+- Tambah To-Do
+- Edit
+- Tandai selesai
+- Delete
+
+
+12. GOOGLE LOGIN
+----------------
+Google Login tidak wajib untuk test awal.
+
+Setelah membuat Web OAuth Client,
+isi .env:
+
+GOOGLE_CLIENT_ID=...
+GOOGLE_CLIENT_SECRET=...
+GOOGLE_REDIRECT_URI=http://127.0.0.1:8000/auth/google/callback
+
+Kemudian:
+
+php artisan optimize:clear
+
+
+TROUBLESHOOTING
+===============
+
+A. "vendor/autoload.php not found"
+   Jalankan:
+   composer install
+
+B. "No application encryption key"
+   Jalankan:
+   php artisan key:generate
+
+C. "Unknown database todo_web"
+   Buat database todo_web di phpMyAdmin.
+
+D. "Access denied for user root"
+   Sesuaikan DB_USERNAME dan DB_PASSWORD pada .env.
+
+E. Perubahan .env tidak terbaca
+   Jalankan:
+   php artisan optimize:clear
+
+F. Google redirect_uri_mismatch
+   Pastikan URI Google Cloud sama persis:
+   http://127.0.0.1:8000/auth/google/callback
